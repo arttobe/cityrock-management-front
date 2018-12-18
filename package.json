@@ -5,13 +5,16 @@
   "author": "Moritz Rinckens <moritz@art-to.be>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --port 8777",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "@casl/ability": "^2.5.1",
+    "@casl/vue": "^0.5.0",
     "axios": "^0.18.0",
     "dayspan-vuetify": "^0.4.0",
     "jwt-decode": "^2.2.0",
+    "swagger-axios-codegen": "^0.4.2",
     "swagger-vue": "^1.0.3",
     "vue": "^2.5.3",
     "vue-axios": "^2.1.4",
