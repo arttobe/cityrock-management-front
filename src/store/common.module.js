@@ -1,86 +1,128 @@
-// Common State.
+// Common State
 const defaults = {
-    sidebar: {
-        visible: true
+  sidebar:
+    {
+      visible: true,
     },
-    title: '',
-    layout: 'DefaultLayout',
-    dialog: {
-        visible: false,
-        text: ''
+  title: "[Cityrock]",
+  layout: "DefaultLayout",
+  snackbar:
+    {
+      visible: false,
+      text: "",
+      timeout: 6000,
+      color: "",
     },
-    snackbar: {
-        visible: false,
-        text: '',
-        timeout: 6000,
-        color: ''
+  isLoading: false,
+  error:
+    {
+      code: null,
+      level: null,
+      message: "",
     },
-    error: {
-        code: null,
-        level: null,
-        message: ''
-    }
+  dialog:
+    {
+      visible: false,
+      title: "dialog",
+      component: null,
+    },
 };
 
-export default {
-    namespaced: true,
+export default
+{
+  namespaced: true,
 
-    state: Object.assign({}, defaults),
+  state: Object.assign({}, defaults),
 
-    mutations: {
-        updateSidebar (state, options) {
+  mutations:
+        {
+          updateSidebar(state, options) {
             state.sidebar = Object.assign({}, defaults.sidebar, options)
-        },
+          },
 
-        updateTitle (state, title) {
+          updateTitle(state, title) {
             state.title = title
-        },
+          },
 
-        updateLayout (state, layout) {
+          updateLayout(state, layout) {
             state.layout = layout
-        },
+          },
 
-        updateDialog (state, options) {
+          updateDialog(state, options) {
+            console.log(options);
             state.dialog = Object.assign({}, defaults.dialog, options)
-        },
+          },
 
-        updateSnackbar (state, options) {
+          updateSnackbar(state, options) {
             state.snackbar = Object.assign({}, defaults.snackbar, options)
-        },
+          },
 
-        error (state, options) {
+          error(state, options) {
             state.error = Object.assign({}, defaults.error, options)
-        },
+          },
 
-        clear (state) {
+          clear(state) {
             state = Object.assign({}, defaults)
-        }
-    },
-
-    actions: {
-        clear ({ state, commit, rootState, dispatch }) {
-            commit('clear')
-            dispatch('auth/clear', {}, { root: true })
+          },
+          updateLoading(state, isLoading) {
+            state.isLoading = isLoading
+          },
         },
 
-        updateSidebar ({ commit }, options) {
-            commit('updateSidebar', options)
-        },
+  actions:
+        {
+          clear(
+            {
+              state,
+              commit,
+              rootState,
+              dispatch,
+            },
+          ) {
+            commit("clear")
+            dispatch("auth/clear", {},
+              {
+                root: true,
+              })
+          },
 
-        updateTitle ({ commit }, title) {
-            commit('updateTitle', title)
-        },
+          updateSidebar({ commit }, options) {
+            commit("updateSidebar", options)
+          },
 
-        updateLayout ({ commit }, layout) {
-            commit('updateLayout', layout)
-        },
+          updateTitle({ commit }, title) {
+            commit("updateTitle", title)
+          },
 
-        updateDialog ({ commit }, options) {
-            commit('updateDialog', options)
-        },
+          updateLayout(
+            {
+              commit,
+            }, layout,
+          ) {
+            commit("updateLayout", layout)
+          },
 
-        updateSnackbar ({ commit }, options) {
-            commit('updateSnackbar', options)
-        }
-    }
+          updateDialog(
+            {
+              commit,
+            }, options,
+          ) {
+            commit("updateDialog", options)
+          },
+
+          updateSnackbar(
+            {
+              commit,
+            }, options,
+          ) {
+            commit("updateSnackbar", options)
+          },
+          updateLoading(
+            {
+              commit,
+            }, isLoading,
+          ) {
+            commit("updateLoading", isLoading)
+          },
+        },
 }
